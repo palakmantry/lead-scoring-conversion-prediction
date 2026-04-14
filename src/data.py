@@ -67,8 +67,9 @@ def basic_cleaning(df: pd.DataFrame) -> pd.DataFrame:
 
 def download_dataset(force: bool = False) -> Path:
     """
-    Download the UCI Bank Marketing zip, extract bank-additional-full.csv,
-    normalize it, and save a clean CSV to data/raw/bank_marketing_full.csv.
+    Download the UCI Bank Marketing archive, handle nested zip files,
+    extract bank-additional-full.csv, normalize it, and save a clean CSV
+    to data/raw/bank_marketing_full.csv.
     """
     ensure_directories()
 
@@ -83,14 +84,30 @@ def download_dataset(force: bool = False) -> Path:
         print("Downloading dataset...")
         urllib.request.urlretrieve(DATA_URL, zip_path)
 
-        print("Extracting dataset...")
+        print("Extracting outer archive...")
         with zipfile.ZipFile(zip_path, "r") as zf:
             zf.extractall(tmpdir_path)
 
         csv_candidates = list(tmpdir_path.rglob("bank-additional-full.csv"))
+
+        if not csv_candidates:
+            nested_zip_files = list(tmpdir_path.rglob("*.zip"))
+
+            for nested_zip in nested_zip_files:
+                nested_extract_dir = nested_zip.parent / nested_zip.stem
+                nested_extract_dir.mkdir(parents=True, exist_ok=True)
+
+                try:
+                    with zipfile.ZipFile(nested_zip, "r") as zf:
+                        zf.extractall(nested_extract_dir)
+                except zipfile.BadZipFile:
+                    continue
+
+            csv_candidates = list(tmpdir_path.rglob("bank-additional-full.csv"))
+
         if not csv_candidates:
             raise FileNotFoundError(
-                "Could not find bank-additional-full.csv inside the downloaded archive."
+                "Could not find bank-additional-full.csv even after extracting nested zip files."
             )
 
         df = pd.read_csv(csv_candidates[0], sep=";")
