@@ -1,0 +1,11 @@
+column,unknown_share
+default,0.2087
+education,0.042
+housing,0.024
+loan,0.024
+job,0.008
+marital,0.0019
+contact,0.0
+month,0.0
+day_of_week,0.0
+poutcome,0.0

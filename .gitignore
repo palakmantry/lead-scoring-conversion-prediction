@@ -30,3 +30,7 @@ data/processed/*.parquet
 
 # Logs
 *.log
+
+# Trained model artifacts
+models/*.joblib
+models/*.pkl

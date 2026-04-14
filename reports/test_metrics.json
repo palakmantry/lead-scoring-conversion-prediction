@@ -1,0 +1,32 @@
+{
+  "test_metrics": {
+    "roc_auc": 0.37148005163387754,
+    "average_precision": 0.30532787727253957,
+    "log_loss": 1.1020884937999555,
+    "brier_score": 0.3391753910076748,
+    "precision_at_10pct": 0.1925566343042071,
+    "lift_at_10pct": 0.5007607084872457,
+    "base_conversion_rate": 0.38452824081566594
+  },
+  "recommended_contact_share_from_validation": 0.5,
+  "chosen_policy_test_results": {
+    "contact_share": 0.5,
+    "threshold": 0.06950023999210782,
+    "contacted_leads": 3090,
+    "captured_conversions": 924,
+    "precision": 0.29902912621359223,
+    "recall": 0.3888888888888889,
+    "revenue": 4158000,
+    "cost": 247200,
+    "profit": 3910800,
+    "roi": 15.820388349514563
+  },
+  "threshold_based_results_using_validation_threshold": {
+    "validation_threshold": 0.20696219871181598,
+    "contact_rate": 0.0,
+    "contacted_leads": 0,
+    "captured_conversions": 0,
+    "precision": 0.0,
+    "recall": 0.0
+  }
+}

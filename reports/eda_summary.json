@@ -1,0 +1,15 @@
+{
+  "rows": 41188,
+  "columns": 21,
+  "positive_rate": 0.11265417111780131,
+  "positive_cases": 4640,
+  "negative_cases": 36548,
+  "train_rows": 28831,
+  "validation_rows": 6178,
+  "test_rows": 6179,
+  "notes": [
+    "Target is conversion / subscription yes-no",
+    "Chronological split is used instead of random split",
+    "The leakage column 'duration' will be dropped during modeling"
+  ]
+}
